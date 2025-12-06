@@ -1,0 +1,236 @@
+.shin-root {
+    background-color: #000;
+    font-family: sans-serif;
+    color: #fff;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+  }
+
+  
+  .back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border: none;
+    border-radius: 5px;
+    color: #ddd;
+    cursor: pointer;
+    font-size: 20px;
+    transition: opacity 0.3s ease;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .back-button:hover {
+    opacity: 0.8;
+  }
+  
+  .toggle-button {
+    padding: 10px 15px;
+    font-size: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #bbb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    z-index: 20;
+  }
+  
+  .toggle-button:hover {
+    opacity: 0.8;
+  }
+  
+  .toggle-button.isclicked {
+    color: #fff;
+  }
+  
+  .hidden-section {
+    opacity: 0;
+    transition: opacity 1s ease;
+    pointer-events: none;
+  }
+  
+  .visible-section {
+    opacity: 1;
+    transition: opacity 1s ease;
+  }
+  
+  .absolute {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  
+  .shinratsuPage {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    background-color: #000;
+  }
+  
+  .shinratsu,
+  .maroyaka {
+    position: absolute;
+    object-fit: cover;
+    transition:
+        transform 0.6s ease-in-out,
+        clip-path 1s ease;
+    transform: scale(1); 
+    cursor: pointer;
+  }
+  
+  .shinratsu {
+    clip-path: inset(0 50% 0 0);
+    z-index: 2;
+  }
+  
+  .maroyaka {
+    clip-path: inset(0 0 0 50%);
+    z-index: 2;
+  }
+  
+  .shinratsu:hover,
+  .maroyaka:hover {
+    transform: scale(1.01);
+  }
+
+  .img-active {
+  z-index: 3;
+}
+
+.img-inactive {
+  z-index: 2;
+  transition:
+    transform 0.6s ease-in-out,
+    clip-path 1s ease,
+    z-index 0s linear 0.6s;
+}
+  
+  /* Full animation */
+  .shinratsu.animate,
+  .maroyaka.animate {
+    clip-path: inset(0 0 0 0);
+  }
+  
+  
+  .blurredShinratsuHalf,
+  .blurredMaroyakaHalf {
+    position: absolute;
+    object-fit: cover;
+    width: 100vw;
+    height: 100vh;
+    filter: blur(15px);
+    z-index: 1;
+    transition: clip-path 1s ease;
+  }
+  
+  .blurredShinratsuHalf {
+    left: 0;
+    clip-path: inset(0 50% 0 0);
+  }
+  
+  .blurredMaroyakaHalf {
+    right: 0;
+    clip-path: inset(0 0 0 50%);
+  }
+  
+  /* When fully opened */
+  .blurredFull {
+    clip-path: inset(0 0 0 0);
+  }
+  
+  /* Blur Z-layer control */
+  .fullBack {
+    z-index: 0;
+  }
+  
+  .fullFront {
+    z-index: 1;
+  }
+  
+  
+  .shinText,
+  .maroText {
+    font-size: 7vw;
+    text-shadow: 1px 1px 2px black;
+    position: absolute;
+    z-index: 10;
+    color: #ffffff;
+    opacity: 0;
+    transition: opacity 1s ease 1s;
+  }
+  
+  .visibleText {
+    opacity: 1;
+  }
+  
+  
+  @media (min-aspect-ratio: 1/1) {
+    .shinratsu,
+    .maroyaka {
+      width: 100vh;
+      height: 100vh;
+    }
+  
+    .blurredShinratsuHalf,
+    .blurredMaroyakaHalf {
+      height: 100vh;
+    }
+  
+    .shinText {
+      left: -5vw;
+      top: 10vh;
+      writing-mode: vertical-rl;
+    }
+  
+    .maroText {
+      right: -5vw;
+      top: 10vh;
+      writing-mode: vertical-rl;
+    }
+  }
+  
+  @media (max-aspect-ratio: 1/1) {
+    .shinratsu,
+    .maroyaka {
+      width: 100vw;
+      height: 100vw;
+    }
+  
+    .blurredShinratsuHalf,
+    .blurredMaroyakaHalf {
+      height: 100vh;
+    }
+  
+    .h1Text {
+      font-size: 5vh;
+      white-space: nowrap;
+    }
+  
+    .shinText {
+      top: 30vw;
+      left: 50vw;
+      transform: translate(-50%, 0);
+    }
+  
+    .maroText {
+      top: 30vw;
+      left: 50vw;
+      transform: translate(-50%, 0);
+    }
+  }
+  

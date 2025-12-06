@@ -1,0 +1,33 @@
+.whats-new-container {
+    max-height: 80%;
+    overflow-y: auto;
+  }
+  
+  .whats-new-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  .whats-new-item {
+    border-bottom: 1px solid #6a5137;
+    padding-bottom: 6px;
+    padding-left: 20px;
+  }
+  
+  .whats-new-date {
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .new-badge {
+    background-color: #e63946;
+    color: white;
+    font-size: 0.65rem;
+    padding: 0.1rem 0.3rem;
+    border-radius: 1rem;
+    margin-left: 0.5rem;
+  }
+  
