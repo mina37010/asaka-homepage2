@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useParams, notFound } from "next/navigation";
+import { notFound } from "next/navigation";
 import "@/styles/Sites.css";
 
 interface SiteItem {
@@ -18,48 +18,46 @@ const sites: SiteItem[] = [
   { key: "churu", url: "https://itsu.dev", username: "ちゅるり" },
 ];
 
-type SiteKey = SiteItem["key"];
+type Props = {
+  site: string;
+};
 
-const getSite = (key: SiteKey): SiteItem | undefined =>
-  sites.find((site) => site.key === key);
+export default function SiteClient({ site }: Props) {
+  const siteData = sites.find((s) => s.key === site);
+  const isLinkPage = site === "link";
 
-export default function Page() {
-  const params = useParams<{ site: SiteKey | "link" }>();
-  const siteKey = params.site;
-
-  const site = getSite(siteKey as SiteKey);
-  const isLinkPage:boolean = siteKey === "link";
-
-  if (!site && !isLinkPage) {
+  // 該当ページが無い場合 NotFound
+  if (!siteData && !isLinkPage) {
     notFound();
   }
 
   return (
     <div className="with-nav">
 
+      {/* 個別サイトページ */}
       <div className={`Iframe ${isLinkPage ? "hide" : ""}`}>
         <h1>誰のページですか?</h1>
 
         <h2>
-          {site ? (
+          {siteData && (
             <a
               className="a-hover"
-              href={site.url}
+              href={siteData.url}
               target="_blank"
               rel="noopener noreferrer"
             >
-              {site.username}
+              {siteData.username}
             </a>
-          ) : null}
+          )}
         </h2>
 
-        {!isLinkPage && site?.url && (
+        {!isLinkPage && siteData?.url && (
           <iframe
             id="inlineFrame"
-            title={site.username}
+            title={siteData.username}
             width="95%"
             height="75%"
-            src={site.url}
+            src={siteData.url}
             className="iframe-style"
             sandbox="allow-scripts allow-same-origin allow-forms"
           />
@@ -71,6 +69,7 @@ export default function Page() {
         <h1>皆様のリンク集！</h1>
       </div>
 
+      {/* リンクボタン一覧 */}
       <div className="button-container">
         {sites.map(({ key, url, username }) => (
           <Link className="a-non" href={`/${key}`} key={key}>
@@ -83,7 +82,6 @@ export default function Page() {
           </Link>
         ))}
       </div>
-
     </div>
   );
 }
