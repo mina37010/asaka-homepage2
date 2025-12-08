@@ -10,11 +10,7 @@ const yusei = Yusei_Magic({
     weight: "400",
     subsets: ["latin"],
   });
-  
-  export const metadata = {
-    title: "Yusei Magic Example",
-    description: "Google Font Yusei Magic with Next.js",
-  };
+
 
 export default function MainLayout({children,}: {children: React.ReactNode;}) {
   return (
