@@ -592,6 +592,22 @@ footer,.footer,.navbar{
           transition: opacity 0.5s ease-in-out;
         }
 
+        .fallbackImage {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+          padding: 1rem;
+          background-color: var(--bottun-color-hover);
+          color: var(--text-base-color);
+          text-align: center;
+        }
+
+        .fallbackImage p {
+          margin: 0;
+        }
+
         /* ナビゲーションボタン */
         .prevButton,.nextButton {
             position: absolute;
@@ -840,6 +856,5 @@ footer,.footer,.navbar{
     height: 80vh;
   }
 }
-
 
 

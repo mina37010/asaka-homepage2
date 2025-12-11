@@ -12,22 +12,17 @@ type Track = {
 
 export default function NowListenPage() {
   const [tracks, setTracks] = useState<Track[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const containerRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     const fallback = [
       {
-        title: "Loading...",
+        title: "No Artist",
         artist: "Unknown Artist",
         image: "/placeholder.png",
         url: "#",
-      },
-      {
-        title: "Loading...",
-        artist: "Unknown Artist",
-        image: "/placeholder.png",
-        url: "#",
-      },
+      }
     ];
 
     fetch("/api/nowlisten")
@@ -39,7 +34,8 @@ export default function NowListenPage() {
       .catch((err) => {
         console.error("Fetch error:", err);
         setTracks(fallback);
-      });
+      })
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
@@ -47,6 +43,10 @@ export default function NowListenPage() {
       <h1>
         <span className="red">A</span>saka’s Recently Played
       </h1>
+
+      {isLoading && (
+        <div className="nowlisten-loading">Now Loading...</div>
+      )}
 
       <div className="track-scroll-container" ref={containerRef}>
         {tracks.map((track, i) => (

@@ -45,6 +45,7 @@ export default function Page() {
   ];
 
   const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [imageErrors, setImageErrors] = useState<Record<number, boolean>>({});
 
   const goToNextImage = useCallback(() => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -53,6 +54,13 @@ export default function Page() {
   const goToPrevImage = useCallback(() => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   }, [images.length]);
+
+  const handleImageError = useCallback((index: number) => {
+    setImageErrors((prev) => {
+      if (prev[index]) return prev;
+      return { ...prev, [index]: true };
+    });
+  }, []);
 
   // 自動スライド
   useEffect(() => {
@@ -237,11 +245,19 @@ export default function Page() {
                   rel="noopener noreferrer"
                 >
                   <h3 className="siteText">皆様のサイト</h3>
-                  <img
-                    className="linkImage"
-                    src={image.src}
-                    alt={`${image.text} のサイトアイコン`}
-                  />
+                  {imageErrors[index] ? (
+                    <div className="linkImage fallbackImage" aria-live="polite">
+                      <p>画像を表示できません</p>
+                      <p>{image.text}</p>
+                    </div>
+                  ) : (
+                    <img
+                      className="linkImage"
+                      src={image.src}
+                      alt={`${image.text} のサイトアイコン`}
+                      onError={() => handleImageError(index)}
+                    />
+                  )}
 
                   <div className="hoverOverlay">
                     <div className="overlayText">
