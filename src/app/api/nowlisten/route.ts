@@ -39,7 +39,10 @@ const loadKVConfig = (): CloudflareKVConfig | null => {
   };
 };
 
-const isCacheValid = (cached: CachedNowListen | null, now: number) => {
+const isCacheValid = (
+  cached: CachedNowListen | null,
+  now: number
+): cached is CachedNowListen => {
   if (!cached || typeof cached.timestamp !== "number") return false;
   return now - cached.timestamp < CACHE_TTL_MS;
 };
