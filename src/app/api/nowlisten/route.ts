@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+export const runtime = "edge";
 import { getAccessTokenFromRefreshToken } from "@/lib/spotify/getAccessToken";
 import { fetchRecentTracks } from "@/lib/spotify/fetchRecentTracks";
 import {
