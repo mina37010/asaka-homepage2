@@ -30,7 +30,7 @@ export default function NowListenPage() {
       },
     ];
 
-    fetch("/nowlisten")
+    fetch("/api/nowlisten")
       .then((res) => {
         if (!res.ok) throw new Error("Network error");
         return res.json();

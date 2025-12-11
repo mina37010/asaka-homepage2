@@ -1,3 +1,16 @@
+const encodeBase64 = (value: string) => {
+  if (typeof btoa === "function") {
+    return btoa(value);
+  }
+
+  const globalAny = globalThis as any;
+  if (globalAny?.Buffer?.from) {
+    return globalAny.Buffer.from(value).toString("base64");
+  }
+
+  throw new Error("Base64 encoder is not available in this environment.");
+};
+
 export async function getAccessTokenFromRefreshToken(env: any): Promise<string> {
   const params = new URLSearchParams();
   params.append("grant_type", "refresh_token");
@@ -6,7 +19,7 @@ export async function getAccessTokenFromRefreshToken(env: any): Promise<string> 
   const res = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
-      Authorization: `Basic ${btoa(
+      Authorization: `Basic ${encodeBase64(
         `${env.SPOTIFY_CLIENT_ID}:${env.SPOTIFY_CLIENT_SECRET}`
       )}`,
       "Content-Type": "application/x-www-form-urlencoded",
