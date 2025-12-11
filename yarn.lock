@@ -252,10 +252,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cloudflare/workers-types@npm:^4.20251205.0":
-  version: 4.20251205.0
-  resolution: "@cloudflare/workers-types@npm:4.20251205.0"
-  checksum: 10c0/3b140d73abd22a5ab20c6b4c46e16d04659b34feb2ef4f3476bcab752a6bb80bc17feb14d887de9265d02667e33e40e41682f77e30c2065dec4ef6562048ed9f
+"@cloudflare/workers-types@npm:^4.20251211.0":
+  version: 4.20251211.0
+  resolution: "@cloudflare/workers-types@npm:4.20251211.0"
+  checksum: 10c0/9f59b497b1c530fc65ad8ae8741a6d01010de77d5e692e01f901f5bf0ad34f67f52689f21e3ecd43b4b40280c228ab9add2b46daf1e50ed278b5c43b292cc155
   languageName: node
   linkType: hard
 
@@ -3150,7 +3150,7 @@ __metadata:
   resolution: "homepage-next@workspace:."
   dependencies:
     "@cloudflare/next-on-pages": "npm:^1.13.16"
-    "@cloudflare/workers-types": "npm:^4.20251205.0"
+    "@cloudflare/workers-types": "npm:^4.20251211.0"
     "@tailwindcss/postcss": "npm:^4"
     "@types/node": "npm:^20"
     "@types/react": "npm:^19"
