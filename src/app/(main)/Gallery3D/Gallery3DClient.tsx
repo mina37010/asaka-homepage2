@@ -84,7 +84,7 @@ export default function Gallery3DClient() {
                 alt={selected.title}
                 className="modal-image"
                 onError={(e) => {
-                    (e.target as HTMLVideoElement).poster = "/placeholder.png";
+                    (e.target as HTMLImageElement).src = "/placeholder.png";
                 }}
               />
             )}
