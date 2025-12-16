@@ -7,12 +7,13 @@ Next.js（App Router）＋ TypeScript で構築し、Cloudflare Pages でホス�
 
 ## 🛠 Tech Stack
 
-- **Next.js 14 (App Router)**
+- **Next.js 16（App Router / React Compiler）**
+- **React 19**
 - **TypeScript**
-- **React 18**
 - **Cloudflare Pages**
+- **Cloudflare Workers KV**
 - **Cloudflare R2**
-- **CSS Modules / Global CSS**
+- **Global CSS**
 
 ## 🔑 環境変数
 
